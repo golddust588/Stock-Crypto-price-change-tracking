@@ -10,8 +10,8 @@ from tkinter import messagebox
 
 MY_EMAIL = "durubum@yahoo.com"
 PASSWORD = "lkksxqchebagajjx"
-VIRTUAL_TWILIO_NUMBER = "+16518776358"
-VERIFIED_NUMBER = "+37062513233"
+VIRTUAL_TWILIO_NUMBER = ""
+VERIFIED_NUMBER = ""
 PASS = "jdsflksdjoiueiofk645"
 BASIC = HTTPBasicAuth('golddust588', PASS)
 
@@ -23,8 +23,8 @@ SHEETY_ENDPOINT = "https://api.sheety.co/ab27027aa9e8e1dfb465cf2652971099/stockN
 ALPHA_VANTAGE_API = "MZUDQLO3J3MBGD8G"
 COINMARKETCAP_API_KEY = "2925f4dc-5bde-45d0-84d1-62b2c600ef57"
 NEWS_API_KEY = "2d7b384a6b8447d3891714f97b9608d7"
-TWILIO_SID = "AC26603fbe234f95acb7e8ad8e9100122f"
-TWILIO_AUTH_TOKEN = "c4eabef2900db7f061f2df87c44a4a5c"
+TWILIO_SID = ""
+TWILIO_AUTH_TOKEN = ""
 
 # ---------------------------- STOCKS TO BE IN UI ------------------------------------------------------------------ #
 # From https://www.nasdaq.com/market-activity/stocks/screener downloaded csv of Mega ($200>B) market cap stock
@@ -290,7 +290,8 @@ def send_news(coin_symbols, coin_data, stock_symbols, full_stock_names):
                 day_before_closing_price = stock_data["Time Series (60min)"][f"{day_before_last_market_date} "
                                                                              f"20:00:00"]["4. close"]
                 difference = abs(float(yesterday_closing_price) - float(day_before_closing_price))
-                stock_percentage_diff = difference * 100 // float(day_before_closing_price)
+                stock_percentage_diff = round(difference * 100 / float(day_before_closing_price), 3)
+
                 # print(difference)
                 print(stock_percentage_diff)
 
@@ -300,7 +301,7 @@ def send_news(coin_symbols, coin_data, stock_symbols, full_stock_names):
                 day_before_closing_price = stock_data["Time Series (60min)"][f"{two_days_before_last_market_day}"
                                                                              f" 20:00:00"]["4. close"]
                 difference = abs(float(yesterday_closing_price) - float(day_before_closing_price))
-                stock_percentage_diff = difference * 100 // float(day_before_closing_price)
+                stock_percentage_diff = round(difference * 100 / float(day_before_closing_price), 3)
                 # print(difference)
                 print(stock_percentage_diff)
 
@@ -329,11 +330,13 @@ def send_news(coin_symbols, coin_data, stock_symbols, full_stock_names):
                 news_data = response.json()
                 three_articles = news_data["articles"][0:3]
 
-                first_title = (three_articles[0]["title"]).replace('’', "'").replace("—", "-")
-                first_description = (three_articles[0]["description"]).replace('’', "'").replace("—", "-")
+                first_title = (three_articles[0]["title"]).replace('’', "'").replace("—", "-").replace("…", "...")
+                first_description = (three_articles[0]["description"]).replace('’', "'").replace("—", "-")\
+                    .replace("…", "...")
                 first_url = (three_articles[0]["url"])
-                second_title = (three_articles[1]["title"]).replace('’', "'").replace("—", "-")
-                second_description = (three_articles[0]["description"]).replace('’', "'").replace("—", "-")
+                second_title = (three_articles[1]["title"]).replace('’', "'").replace("—", "-").replace("…", "...")
+                second_description = (three_articles[0]["description"]).replace('’', "'").replace("—", "-")\
+                    .replace("…", "...")
                 second_url = (three_articles[1]["url"])
 
                 # News subject attribute:
@@ -349,14 +352,14 @@ def send_news(coin_symbols, coin_data, stock_symbols, full_stock_names):
 
                 # Sending two most popular news stories of the day associated with particular stock/crypto
 
-                email_text = f"On the last stock market closure {stock_subject}\n, comparing from the day before" \
+                email_text = f"On the last stock market closure {stock_subject}, comparing from the day before.\n" \
                              f"Here are some news on {subscribed_stock}:\n" \
                              f"Headline: {first_title}\n" \
                              f"Brief: {first_description}\n" \
-                             f"Read more: {first_url}" \
-                             f"Second Headline: {second_title}" \
-                             f"Second Brief: {second_description}" \
-                             f"Read more: {second_url}"
+                             f"Read more: {first_url}\n" \
+                             f"Second Headline: {second_title}\n" \
+                             f"Second Brief: {second_description}\n" \
+                             f"Read more: {second_url}\n"
 
                 # Setting up email sending
 
@@ -408,11 +411,13 @@ def send_news(coin_symbols, coin_data, stock_symbols, full_stock_names):
                 news_data = response.json()
                 three_articles = news_data["articles"][0:3]
 
-                first_title = (three_articles[0]["title"]).replace('’', "'").replace("—", "-")
-                first_description = (three_articles[0]["description"]).replace('’', "'").replace("—", "-")
+                first_title = (three_articles[0]["title"]).replace('’', "'").replace("—", "-").replace("…", "...")
+                first_description = (three_articles[0]["description"]).replace('’', "'").replace("—", "-")\
+                    .replace("…", "...")
                 first_url = (three_articles[0]["url"])
-                second_title = (three_articles[1]["title"]).replace('’', "'").replace("—", "-")
-                second_description = (three_articles[0]["description"]).replace('’', "'").replace("—", "-")
+                second_title = (three_articles[1]["title"]).replace('’', "'").replace("—", "-").replace("…", "...")
+                second_description = (three_articles[0]["description"]).replace('’', "'").replace("—", "-")\
+                    .replace("…", "...")
                 second_url = (three_articles[1]["url"])
 
                 # News subject attribute:
@@ -426,14 +431,14 @@ def send_news(coin_symbols, coin_data, stock_symbols, full_stock_names):
                 coin_subject = f"{subscribed_crypto} is {coin_up_down()} by {coin_percentage_diff}%"
                 coin_subject.replace('’', "'")
 
-                email_text = f"In the last 24h {coin_subject}\n" \
+                email_text = f"In the last 24h {coin_subject}.\n" \
                              f"Here are some news on {subscribed_crypto}:\n" \
                              f"Headline: {first_title}\n" \
                              f"Brief: {first_description}\n" \
-                             f"Read more: {first_url}" \
-                             f"Second Headline: {second_title}" \
-                             f"Second Brief: {second_description}" \
-                             f"Read more: {second_url}"
+                             f"Read more: {first_url}\n" \
+                             f"Second Headline: {second_title}\n" \
+                             f"Second Brief: {second_description}\n" \
+                             f"Read more: {second_url}\n"
 
                 # Setting up email sending
 
