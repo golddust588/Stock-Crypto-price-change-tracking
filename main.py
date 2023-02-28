@@ -9,22 +9,22 @@ from requests.auth import HTTPBasicAuth
 from tkinter import messagebox
 
 MY_EMAIL = "durubum@yahoo.com"
-PASSWORD = "lkksxqchebagajjx"
+# PASSWORD = "lkksxqchebagajjx"
 VIRTUAL_TWILIO_NUMBER = ""
 VERIFIED_NUMBER = ""
-PASS = "jdsflksdjoiueiofk645"
+# PASS = "jdsflksdjoiueiofk645"
 BASIC = HTTPBasicAuth('golddust588', PASS)
 
-# STOCK_ENDPOINT = "https://www.alphavantage.co/query"
-# COIN_ENDPOINT = "https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest"
-# NEWS_ENDPOINT = "https://newsapi.org/v2/everything"
+STOCK_ENDPOINT = "https://www.alphavantage.co/query"
+COIN_ENDPOINT = "https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest"
+NEWS_ENDPOINT = "https://newsapi.org/v2/everything"
 # SHEETY_ENDPOINT = "https://api.sheety.co/ab27027aa9e8e1dfb465cf2652971099/stockNames/lapas1"
 #
 # ALPHA_VANTAGE_API = "MZUDQLO3J3MBGD8G"
 # COINMARKETCAP_API_KEY = "2925f4dc-5bde-45d0-84d1-62b2c600ef57"
 # NEWS_API_KEY = "2d7b384a6b8447d3891714f97b9608d7"
-# TWILIO_SID = ""
-# TWILIO_AUTH_TOKEN = ""
+TWILIO_SID = ""
+TWILIO_AUTH_TOKEN = ""
 
 # ---------------------------- STOCKS TO BE IN UI ------------------------------------------------------------------ #
 # From https://www.nasdaq.com/market-activity/stocks/screener downloaded csv of Mega ($200>B) market cap stock
