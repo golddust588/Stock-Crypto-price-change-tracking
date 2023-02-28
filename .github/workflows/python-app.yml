@@ -1,0 +1,28 @@
+# This workflow will install Python dependencies, run tests and lint with a single version of Python
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-python
+
+name: Python application
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  my-job:
+    runs-on: ubuntu-latest
+    env:
+      PASSWORD: ${{ secrets.PASSWORD }}
+      PASS: ${{ secrets.PASS }}
+      SHEETY_ENDPOINT: ${{ secrets.SHEETY_ENDPOINT }}
+      ALPHA_VANTAGE_API: ${{ secrets.ALPHA_VANTAGE_API }}
+      COINMARKETCAP_API_KEY: ${{ secrets.COINMARKETCAP_API_KEY }}
+      NEWS_API_KEY: ${{ secrets.NEWS_API_KEY }}
+    steps:
+      - name: Use the secrets
+        run: |
+          echo $PASSWORD
+          echo $PASS
+          echo $SHEETY_ENDPOINT
+          echo $ALPHA_VANTAGE_API
+          echo $COINMARKETCAP_API_KEY
+          echo $NEWS_API_KEY
