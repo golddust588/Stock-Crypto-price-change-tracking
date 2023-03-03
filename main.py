@@ -331,13 +331,15 @@ def send_news(coin_symbols, coin_data, stock_symbols, full_stock_names):
                 news_data = response.json()
                 three_articles = news_data["articles"][0:3]
 
-                first_title = (three_articles[0]["title"]).replace('’', "'").replace("—", "-").replace("…", "...")
+                first_title = (three_articles[0]["title"]).replace('’', "'").replace("—", "-").replace("…", "...")\
+                    .replace("‘", "'").replace("“", "'").replace("”", "'")
                 first_description = (three_articles[0]["description"]).replace('’', "'").replace("—", "-")\
-                    .replace("…", "...")
+                    .replace("…", "...").replace("‘", "'").replace("“", "'").replace("”", "'")
                 first_url = (three_articles[0]["url"])
-                second_title = (three_articles[1]["title"]).replace('’', "'").replace("—", "-").replace("…", "...")
-                second_description = (three_articles[0]["description"]).replace('’', "'").replace("—", "-")\
-                    .replace("…", "...")
+                second_title = (three_articles[1]["title"]).replace('’', "'").replace("—", "-").replace("…", "...")\
+                    .replace("‘", "'").replace("“", "'").replace("”", "'")
+                second_description = (three_articles[1]["description"]).replace('’', "'").replace("—", "-")\
+                    .replace("…", "...").replace("‘", "'").replace("“", "'").replace("”", "'")
                 second_url = (three_articles[1]["url"])
 
                 # News subject attribute:
@@ -412,13 +414,15 @@ def send_news(coin_symbols, coin_data, stock_symbols, full_stock_names):
                 news_data = response.json()
                 three_articles = news_data["articles"][0:3]
 
-                first_title = (three_articles[0]["title"]).replace('’', "'").replace("—", "-").replace("…", "...")
+                first_title = (three_articles[0]["title"]).replace('’', "'").replace("—", "-").replace("…", "...")\
+                    .replace("‘", "'").replace("“", "'").replace("”", "'")
                 first_description = (three_articles[0]["description"]).replace('’', "'").replace("—", "-")\
-                    .replace("…", "...")
+                    .replace("…", "...").replace("‘", "'").replace("“", "'").replace("”", "'")
                 first_url = (three_articles[0]["url"])
-                second_title = (three_articles[1]["title"]).replace('’', "'").replace("—", "-").replace("…", "...")
-                second_description = (three_articles[0]["description"]).replace('’', "'").replace("—", "-")\
-                    .replace("…", "...")
+                second_title = (three_articles[1]["title"]).replace('’', "'").replace("—", "-").replace("…", "...")\
+                    .replace("‘", "'").replace("“", "'").replace("”", "'")
+                second_description = (three_articles[1]["description"]).replace('’', "'").replace("—", "-")\
+                    .replace("…", "...").replace("‘", "'").replace("“", "'").replace("”", "'")
                 second_url = (three_articles[1]["url"])
 
                 # News subject attribute:
